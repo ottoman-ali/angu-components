@@ -1,0 +1,10 @@
+<div class="flash" ng-if="flash">
+	<div class="aw_wrapper">
+		<div ng-class="{ 'bs-alert': flash, 'bs-alert-success': flash.type === 'success', 'bs-alert-danger': flash.type === 'error' }" >
+			<span class="aw_font_17">{{flash.message}}</span>
+			<ul ng-if="flash.list">
+				<li class="aw_p5" ng-repeat="error in flash.list">{{error.message + ': ' +error.field}}</li>
+			</ul>
+		</div>
+	</div>
+</div>
