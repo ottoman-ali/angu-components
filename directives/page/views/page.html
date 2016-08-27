@@ -1,0 +1,14 @@
+<div class="pagination bs_mb50">
+	<a ng-click="gotoPage({pagen: currentPage-1})" href="javascript:void(0)" ng-if="(currentPage > 1)" class="pagination_link">Prev</a>
+	<a ng-click="gotoPage({pagen: page})"
+		ng-repeat="page in pages track by tracker(page, $index)" 
+		ng-class="{
+			active: currentPage == page, 
+			pagination_link: page != '...', 
+			bs_pagination_skip: page == '...' }" 
+		href="javascript:void(0);"
+		class="">
+	{{page}}
+	</a>
+	<a ng-click="gotoPage({pagen: currentPage+1})" href="javascript:void(0)" ng-if="(currentPage < totalPages)" class="pagination_link">Next</a>
+</div>
