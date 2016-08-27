@@ -68,18 +68,18 @@
 		 * Check if user is authorized
 		 * @return {Boolean} true/false
 		 */
-		self.isGuest = function(){
+		self.isAuth = function(){
 			var session = $cookies.getObject('session');
 			if(typeof session === 'undefined') return true;
 			else return false;			
 		}
 
 		/**
-		 * Redirect user to login page
+		 * Check user authentication and redirect user to login page
 		 * @param  {String} url Login page URL
 		 */
 		self.requiredLogin = function(url){
-			$location.path(url);
+			if(!self.isAuth) $location.path(url);
 		}
 	}
 })()
