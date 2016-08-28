@@ -1,0 +1,19 @@
+{
+  "name": "angu-components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "none",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ottoman-ali/angu-components.git"
+  },
+  "author": "Usman Ali",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ottoman-ali/angu-components/issues"
+  },
+  "homepage": "https://github.com/ottoman-ali/angu-components#readme"
+}

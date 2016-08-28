@@ -5,7 +5,7 @@
 		.module('site')
 		.service('authService', ['$http', '$cookies', '$location', authService]);
 
-	function authService($http, $cookies, $location){
+	function authService($http, $rootScope, $cookies, $location){
 		var self = this;
 
 		/**
@@ -13,6 +13,8 @@
 		 * @param {Object} authcred user auth data
 		 */
 		self.setCredentials = function(authcred){
+			$rootScope.globals.user_auth = true;
+			$rootScope.globals.currentUser = authcred;
 			$cookies.putObject('session', authcred);
 			$http.defaults.headers.common['Authorization'] = authcred.token;
 		}
@@ -23,7 +25,9 @@
 		 */
 		self.clearCredentials = function(){
 			$cookies.remove('session');
-			delete $http.defaults.headers.common.Authorization
+			delete $http.defaults.headers.common.Authorization;
+			delete $rootScope.globals.user_auth;
+			delete $rootScope.globals.currentUser;
 		}
 
 		/**
@@ -70,8 +74,8 @@
 		 */
 		self.isAuth = function(){
 			var session = $cookies.getObject('session');
-			if(typeof session === 'undefined') return true;
-			else return false;			
+			if(typeof session === 'undefined') return false;
+			else return true;			
 		}
 
 		/**
@@ -79,7 +83,7 @@
 		 * @param  {String} url Login page URL
 		 */
 		self.requiredLogin = function(url){
-			if(!self.isAuth) $location.path(url);
+			if(!self.isAuth()) $location.path(url);
 		}
 	}
 })()
