@@ -1,11 +1,11 @@
 (function () {
-	"use strict";
+    "use strict";
 
-	angular
-		.module('site')
-		.service('flashService', ['$rootScope', '$timeout', 'responseFactory', flashService])
+    angular
+        .module('FlashModule', [])
+        .service('flashService', ['$rootScope', '$timeout', flashService])
 
-    function flashService($rootScope, $timeout, responseFactory) {
+    function flashService($rootScope, $timeout) {
         var self = this;
 
         /**
@@ -42,7 +42,7 @@
          * @return {[type]}                         [description]
          */
         self.success = function(response, showErrorList, keepAfterLocationChange) {
-        	var parse = (typeof response === 'string') ? {'message': response} : new responseFactory(response);
+            var parse = (typeof response === 'string') ? {'message': response} : response;
             $rootScope.flash = {
                 message: parse.message,
                 list: (typeof showErrorList !== 'undefined') ? parse.errors : false,
@@ -62,7 +62,7 @@
          * @return {[type]}                         [description]
          */
         self.error = function(response, showErrorList, keepAfterLocationChange) {
-        	var parse = (typeof response === 'string') ? {'message': response} : new responseFactory(response);
+            var parse = (typeof response === 'string') ? {'message': response} : response;
             $rootScope.flash = {
                 message: parse.message,
                 list: (typeof showErrorList !== 'undefined') ? parse.errors : false,
