@@ -3,10 +3,10 @@
 		<div 
 			ng-class="{ 
 				'bs_alert': flash, 
-				'bs_alert-success': flash.type === 'success', 
-				'bs_alert-danger': flash.type === 'error',
-				'bs_alert-info': flash.type === 'info' ,
-				'bs_alert-warning': flash.type === 'warning' ,
+				'bs_alert_success': flash.type === 'success', 
+				'bs_alert_danger': flash.type === 'error',
+				'bs_alert_info': flash.type === 'info' ,
+				'bs_alert_warning': flash.type === 'warning' ,
 			}" >
 			<span class="aw_font_17">{{flash.message}}</span>
 			<ul ng-if="flash.list">
