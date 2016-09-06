@@ -73,5 +73,47 @@
                 delete $rootScope['flash']; 
             },7000);
         }
+
+
+        /**
+         * Set flash data in root scope to show info flash massge
+         * @param  {String, Object} response                Can either be a string or an object
+         * @param  {Boolean} showErrorList           if set true flash will include errors list
+         * @param  {Boolean} keepAfterLocationChange if set true flash message will appear even after location change(not browser-redirect/refresh)
+         * @return {[type]}                         [description]
+         */
+        self.info = function(response, showErrorList, keepAfterLocationChange) {
+            var parse = (typeof response === 'string') ? {'message': response} : response;
+            $rootScope.flash = {
+                message: parse.message,
+                list: (typeof showErrorList !== 'undefined') ? parse.errors : false,
+                type: 'info',
+                keepAfterLocationChange: keepAfterLocationChange
+            };
+            $timeout(function(){
+                delete $rootScope['flash']; 
+            },7000);
+        }
+
+
+        /**
+         * Set flash data in root scope to show warning flash massge
+         * @param  {String, Object} response                Can either be a string or an object
+         * @param  {Boolean} showErrorList           if set true flash will include errors list
+         * @param  {Boolean} keepAfterLocationChange if set true flash message will appear even after location change(not browser-redirect/refresh)
+         * @return {[type]}                         [description]
+         */
+        self.warning = function(response, showErrorList, keepAfterLocationChange) {
+            var parse = (typeof response === 'string') ? {'message': response} : response;
+            $rootScope.flash = {
+                message: parse.message,
+                list: (typeof showErrorList !== 'undefined') ? parse.errors : false,
+                type: 'warning',
+                keepAfterLocationChange: keepAfterLocationChange
+            };
+            $timeout(function(){
+                delete $rootScope['flash']; 
+            },7000);
+        }
     }
 })();
