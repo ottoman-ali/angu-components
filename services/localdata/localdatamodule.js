@@ -51,6 +51,15 @@
 		}
 
 		/**
+		 * Remove data from localstorage
+		 * @param  {String} key localstorage data key
+		 * @return {} 
+		 */
+		self.remove = function(key){
+			return JSON.parse(localStorage.removeItem(key));
+		}
+
+		/**
 		 * Provide required from localstorage. If data is not available 
 		 * fetch from server.
 		 * @param  {String} key    Data key
